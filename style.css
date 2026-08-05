@@ -1700,3 +1700,182 @@ ul { list-style: none; }
 .toast-body { display: flex; flex-direction: column; gap: 1px; line-height: 1.3; }
 #toastName { color: #FFB300; font-weight: 700; }
 #toastMsg { color: rgba(255,255,255,0.7); font-size: 0.76rem; }
+
+/* ═══════════════════════════════════════════════════
+   MOBILE-FIRST RESPONSIVE OVERRIDES
+   Targeting: max-width 767px (smartphones)
+═══════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+
+  /* ── Globals ── */
+  .section { padding: 40px 0; }
+  .section-head { margin-bottom: 28px; }
+  .section-sub { font-size: 0.92rem; }
+
+  /* ── Urgency Bar ── */
+  .urgency-bar { padding: 8px 12px; font-size: 0.78rem; }
+  .urgency-inner { gap: 4px 12px; }
+  .urgency-text { font-size: 0.78rem; }
+  .urgency-fire { display: none; }
+  .timer-label { font-size: 0.72rem; }
+  .digit-block { min-width: 30px; font-size: 0.88rem; padding: 2px 5px; }
+  .digit-block small { font-size: 0.52rem; }
+  .digit-sep { font-size: 0.88rem; }
+
+  /* ── Site Header ── */
+  .site-header { top: 38px; padding: 10px 0; }
+  .brand { font-size: 0.95rem; gap: 5px; }
+  .brand-icon { font-size: 1.1rem; }
+  .btn-header-cta {
+    font-size: 0.76rem;
+    padding: 8px 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 140px;
+  }
+
+  /* ── Hero Section ── */
+  .hero { padding: 28px 0 36px; }
+  .hero-wrap { gap: 28px; }
+
+  .hero-kicker {
+    font-size: 0.75rem;
+    padding: 6px 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .hero-h1 {
+    font-size: clamp(1.6rem, 7vw, 2rem);
+    line-height: 1.22;
+    margin-bottom: 14px;
+  }
+
+  .hero-lead {
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+  }
+
+  /* Trust chips — 2 per row on mobile */
+  .trust-chips { gap: 6px; }
+  .chip { font-size: 0.76rem; padding: 6px 10px; }
+
+  /* CTA buttons */
+  .btn-hero { padding: 15px 20px; }
+  .cta-top { font-size: 0.95rem; }
+  .cta-bottom { font-size: 0.72rem; }
+  .hero-security {
+    font-size: 0.71rem;
+    gap: 4px 8px;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero-security .sep { display: none; }
+
+  /* Proof row */
+  .proof-row { gap: 10px; padding: 12px 14px; max-width: 100%; }
+  .proof-avatar { width: 34px; height: 34px; }
+  .proof-text { font-size: 0.76rem; }
+
+  /* Book mockup — hide floating badges on very small screens */
+  .book-mockup { max-width: 280px; }
+  .book-badge { display: none; }
+  .book-ribbon { font-size: 0.62rem; padding: 4px 10px; top: 12px; }
+
+  /* ── PAS Section ── */
+  .pas-column { padding: 22px 18px; }
+  .pas-column h3 { font-size: 1rem; }
+  .pas-column ul li { font-size: 0.85rem; }
+
+  /* ── Profit Simulator ── */
+  .sim-card { padding: 28px 18px; border-radius: var(--radius-lg); }
+  .sim-title { font-size: 1.3rem; }
+  .sim-sub { font-size: 0.85rem; }
+  .sim-slider-box { padding: 16px; }
+  .slider-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .slider-live { font-size: 0.88rem; }
+
+  .sim-results { grid-template-columns: 1fr; }
+  .sim-highlight { grid-column: auto; }
+  .sri-value { font-size: 1.5rem; }
+  .sri-big { font-size: 2rem; }
+
+  /* ── Recipes Grid ── */
+  .rc-body h3 { font-size: 0.92rem; }
+  .rc-body p { font-size: 0.8rem; }
+  .rc-stat span { font-size: 0.65rem; }
+  .rc-stat strong { font-size: 0.85rem; }
+  .recipe-card-more { min-height: 220px; }
+  .rc-more-icon { font-size: 2rem; margin-bottom: 8px; }
+  .rc-more-inner h3 { font-size: 1rem; }
+
+  /* ── Modules ── */
+  .module-row { grid-template-columns: 48px 1fr; gap: 14px; padding: 16px; }
+  .module-num { width: 44px; height: 44px; font-size: 1.1rem; }
+  .module-content h3 { font-size: 0.92rem; }
+  .module-content p { font-size: 0.82rem; }
+
+  /* ── Bonuses ── */
+  .bonuses-grid { gap: 14px; }
+  .bonus-card { padding: 24px 18px; }
+  .bonus-emoji { font-size: 2.2rem; margin-bottom: 8px; }
+  .bonus-card h3 { font-size: 0.92rem; }
+  .bonus-card p { font-size: 0.82rem; }
+  .bonuses-total { font-size: 0.88rem; margin-top: 24px; }
+  .bonuses-total strong { font-size: 1.1rem; }
+
+  /* ── Testimonials ── */
+  .tcard { padding: 20px 16px; }
+  .tcard-quote { font-size: 0.88rem; }
+  .tcard-avatar { width: 40px; height: 40px; }
+
+  /* ── Offer Box ── */
+  .offer-left { padding: 24px 18px; }
+  .offer-right { padding: 24px 18px; }
+  .offer-title { font-size: 1.25rem; }
+  .offer-checklist li { font-size: 0.82rem; }
+  .price-int { font-size: 3.8rem; }
+  .price-dollar { font-size: 1.4rem; margin-top: 6px; }
+  .price-dec { font-size: 1.8rem; margin-top: 6px; }
+  .opm-list span { font-size: 0.7rem; }
+
+  /* ── Guarantee ── */
+  .guarantee-seal { width: 88px; height: 88px; }
+  .gs-days { font-size: 2rem; }
+  .guarantee-text h3 { font-size: 1.05rem; }
+  .guarantee-text p { font-size: 0.85rem; }
+
+  /* ── FAQ ── */
+  .faq-q { font-size: 0.88rem; padding: 14px 16px; }
+  .faq-item.open .faq-a { padding: 4px 16px 16px; }
+  .faq-a p { font-size: 0.84rem; }
+
+  /* ── Final CTA Section ── */
+  .final-title { font-size: 1.5rem; }
+  .final-desc { font-size: 0.92rem; }
+  .btn-final { padding: 16px 24px; }
+  .final-trust { font-size: 0.72rem; gap: 4px 8px; }
+  .final-trust .sep { display: none; }
+
+  /* ── Footer ── */
+  .footer-disc { font-size: 0.72rem; }
+  .footer-copy { font-size: 0.72rem; }
+
+  /* ── Mobile Bar ── */
+  .mb-new { font-size: 1.1rem; }
+
+  /* ── Toast ── */
+  .toast { max-width: 240px; font-size: 0.76rem; left: 10px; bottom: 88px; }
+}
+
+/* ── Extra small phones (< 380px) ── */
+@media (max-width: 380px) {
+  .hero-h1 { font-size: 1.5rem; }
+  .btn-header-cta { max-width: 110px; font-size: 0.7rem; padding: 7px 10px; }
+  .chip { font-size: 0.7rem; padding: 5px 8px; }
+  .digit-block { min-width: 26px; font-size: 0.8rem; }
+}
+
