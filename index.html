@@ -663,21 +663,23 @@
       flex: 1; max-width: 200px; text-align: center;
     }
 
-    /* ─── LIVE SOCIAL PROOF TOAST ─── */
+    /* ─── LIVE SOCIAL PROOF TOAST (TOP RIGHT COMPACT) ─── */
     .toast {
-      position: fixed; bottom: 84px; left: 16px; z-index: 900;
-      background: rgba(18, 21, 27, 0.95); backdrop-filter: blur(8px);
-      color: #FFF; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.15);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3); padding: 12px 16px;
-      display: flex; align-items: center; gap: 12px; max-width: 310px;
-      transform: translateY(140px); opacity: 0; pointer-events: none;
-      transition: transform 0.4s var(--ease), opacity 0.4s ease;
+      position: fixed; top: 48px; right: 12px; z-index: 1050;
+      background: rgba(18, 21, 27, 0.92); backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: #FFF; border-radius: var(--radius-pill); border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: 0 4px 18px rgba(0,0,0,0.22); padding: 6px 12px 6px 10px;
+      display: flex; align-items: center; gap: 8px; max-width: 250px;
+      transform: translateX(120%); opacity: 0; pointer-events: none;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
     }
-    @media (min-width: 768px) { .toast { bottom: 24px; left: 24px; } }
-    .toast.visible { transform: translateY(0); opacity: 1; }
-    .toast-icon { font-size: 1.5rem; flex-shrink: 0; }
-    .toast-body { font-size: 0.8rem; line-height: 1.35; }
-    .toast-body strong { display: block; color: #FFE082; font-size: 0.85rem; }
+    @media (min-width: 768px) { .toast { top: 52px; right: 20px; max-width: 270px; padding: 7px 14px 7px 12px; } }
+    .toast.visible { transform: translateX(0); opacity: 1; }
+    .toast-icon { font-size: 1.05rem; flex-shrink: 0; }
+    .toast-body { font-size: 0.72rem; line-height: 1.25; overflow: hidden; }
+    .toast-body strong { display: block; color: #FFE082; font-size: 0.76rem; font-weight: 800; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
+    .toast-body span { color: #E2E8F0; font-size: 0.68rem; white-space: nowrap; }
 
     /* ─── FOOTER ─── */
     .site-footer {
@@ -1567,21 +1569,21 @@
       const toastName = document.getElementById('toastName');
       const toastMsg = document.getElementById('toastMsg');
       const BUYERS = [
-        { n: 'María Elena R.', c: 'Guadalajara, México 🇲🇽' },
-        { n: 'Carolina G.', c: 'Bogotá, Colombia 🇨🇴' },
-        { n: 'Rosa Mercedes T.', c: 'Lima, Perú 🇵🇪' },
-        { n: 'Daniela S.', c: 'Santiago, Chile 🇨🇱' },
-        { n: 'Patricia V.', c: 'Quito, Ecuador 🇪🇨' },
-        { n: 'Andrea M.', c: 'Monterrey, México 🇲🇽' }
+        { n: 'María Elena R.', c: 'México 🇲🇽' },
+        { n: 'Carolina G.', c: 'Colombia 🇨🇴' },
+        { n: 'Rosa Mercedes T.', c: 'Perú 🇵🇪' },
+        { n: 'Daniela S.', c: 'Chile 🇨🇱' },
+        { n: 'Patricia V.', c: 'Ecuador 🇪🇨' },
+        { n: 'Andrea M.', c: 'México 🇲🇽' }
       ];
       let bIdx = 0;
       function showToast() {
         if (!toast || !toastName) return;
         const b = BUYERS[bIdx];
         toastName.textContent = `${b.n} (${b.c})`;
-        toastMsg.textContent = 'acaba de descargar el manual ($9.90 USD)';
+        toastMsg.textContent = '¡Compró el manual hace 2 min!';
         toast.classList.add('visible');
-        setTimeout(() => toast.classList.remove('visible'), 4500);
+        setTimeout(() => toast.classList.remove('visible'), 3800);
         bIdx = (bIdx + 1) % BUYERS.length;
       }
       setTimeout(() => {
