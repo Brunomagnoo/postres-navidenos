@@ -756,7 +756,7 @@
       <span>Solo quedan <strong id="spots-left">9</strong> cupos disponibles con <strong>65% de Descuento</strong></span>
       <div class="urgency-timer">
         <span>⏱️</span>
-        <span id="t-m">14</span>m : <span id="t-s">59</span>s
+        <span id="t-m">13</span>m : <span id="t-s">56</span>s
       </div>
     </div>
   </div>
@@ -1591,27 +1591,60 @@
         });
       });
 
-      // 3. Timer Regressivo de Escassez & Vagas Restantes
+      // 3. Timer Regressivo Inteligente com Persistência (13m 56s)
       const elM = document.getElementById('t-m');
       const elS = document.getElementById('t-s');
       const spotsEl = document.getElementById('spots-left');
-      let spots = 9;
-      let totalSecs = 14 * 60 + 59;
+      
+      const INITIAL_SECS = 13 * 60 + 56; // Inicia em 13:56 (836 segundos)
+      const STORAGE_KEY_TIMER = 'pn_offer_timer_deadline';
+      const STORAGE_KEY_SPOTS = 'pn_offer_spots_left';
 
-      setInterval(() => {
-        if (elM && elS) {
-          const m = Math.floor((totalSecs % 3600) / 60);
-          const s = totalSecs % 60;
-          elM.textContent = String(m).padStart(2, '0');
-          elS.textContent = String(s).padStart(2, '0');
-          totalSecs = totalSecs > 0 ? totalSecs - 1 : 14 * 60 + 59;
+      // Recupera ou inicializa o timestamp de expiração (Não reseta no reload!)
+      let deadline = parseInt(localStorage.getItem(STORAGE_KEY_TIMER), 10);
+      const now = Date.now();
+
+      if (!deadline || isNaN(deadline)) {
+        deadline = now + INITIAL_SECS * 1000;
+        localStorage.setItem(STORAGE_KEY_TIMER, deadline);
+      } else if (deadline <= now) {
+        // Se já expirou para este usuário, renova um ciclo curto de urgência contínua
+        deadline = now + (6 * 60 + 20) * 1000;
+        localStorage.setItem(STORAGE_KEY_TIMER, deadline);
+      }
+
+      function updateTimer() {
+        if (!elM || !elS) return;
+        const currentNow = Date.now();
+        let remainingSecs = Math.max(0, Math.floor((deadline - currentNow) / 1000));
+        
+        if (remainingSecs <= 0) {
+          deadline = Date.now() + (5 * 60 + 45) * 1000;
+          localStorage.setItem(STORAGE_KEY_TIMER, deadline);
+          remainingSecs = Math.floor((deadline - Date.now()) / 1000);
         }
-      }, 1000);
+
+        const m = Math.floor(remainingSecs / 60);
+        const s = remainingSecs % 60;
+        elM.textContent = String(m).padStart(2, '0');
+        elS.textContent = String(s).padStart(2, '0');
+      }
+
+      updateTimer(); // Atualiza instantaneamente sem atraso
+      setInterval(updateTimer, 1000);
+
+      // Vagas Restantes Inteligentes com Persistência
+      let storedSpots = parseInt(localStorage.getItem(STORAGE_KEY_SPOTS), 10);
+      if (!storedSpots || isNaN(storedSpots) || storedSpots > 9 || storedSpots < 4) {
+        storedSpots = 9;
+      }
+      if (spotsEl) spotsEl.textContent = storedSpots;
 
       setInterval(() => {
-        if (spotsEl && spots > 4 && Math.random() < 0.35) {
-          spots--;
-          spotsEl.textContent = spots;
+        if (spotsEl && storedSpots > 4 && Math.random() < 0.35) {
+          storedSpots--;
+          localStorage.setItem(STORAGE_KEY_SPOTS, storedSpots);
+          spotsEl.textContent = storedSpots;
           spotsEl.style.transition = 'color 0.3s, transform 0.3s';
           spotsEl.style.color = '#FFE082';
           spotsEl.style.transform = 'scale(1.25)';
@@ -1620,7 +1653,7 @@
             spotsEl.style.transform = 'scale(1)';
           }, 1000);
         }
-      }, 28000);
+      }, 26000);
 
       // 4. Simulador Interativo de Lucro
       const simSlider = document.getElementById('simSlider');
