@@ -363,14 +363,73 @@
       font-weight: 700; color: #374151; font-size: 0.72rem;
       border: 1px solid rgba(0,0,0,0.06);
     }
-    .trust-footer-strip {
-      display: flex; align-items: center; justify-content: center;
-      gap: 16px 28px; flex-wrap: wrap;
-      padding-top: 16px; border-top: 1px dashed rgba(180, 160, 140, 0.3);
-      font-size: 0.8rem; font-weight: 700; color: #4B5563;
+    /* ─── PREMIUM SECURITY BADGES STRIP ─── */
+    .trust-security-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 22px;
+      padding-top: 20px;
+      border-top: 1px dashed rgba(180, 160, 140, 0.35);
     }
-    .trust-foot-item {
-      display: inline-flex; align-items: center; gap: 6px;
+    @media (min-width: 680px) {
+      .trust-security-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+    }
+    .security-badge-card {
+      background: #FFFFFF;
+      border: 1px solid rgba(0, 0, 0, 0.07);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+      transition: transform 0.2s var(--ease), box-shadow 0.2s;
+    }
+    .security-badge-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+    }
+    .sec-icon-wrap {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .sec-icon-ssl {
+      background: rgba(0, 200, 83, 0.12);
+      color: #008736;
+    }
+    .sec-icon-instant {
+      background: rgba(2, 132, 199, 0.12);
+      color: #0284C7;
+    }
+    .sec-icon-guarantee {
+      background: rgba(179, 18, 69, 0.12);
+      color: var(--primary);
+    }
+    .sec-badge-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.25;
+    }
+    .sec-badge-title {
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      letter-spacing: -0.1px;
+    }
+    .sec-badge-desc {
+      font-size: 0.70rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-top: 2px;
     }
 
     /* ─── SECTION HEADERS ─── */
@@ -887,11 +946,45 @@
         </div>
       </div>
 
-      <!-- Security Trust Badges -->
-      <div class="trust-footer-strip">
-        <span class="trust-foot-item">🔒 Encriptación SSL 256-bit</span>
-        <span class="trust-foot-item">⚡ Acceso Inmediato en PDF</span>
-        <span class="trust-foot-item">🛡️ Garantía de Satisfacción 7 Días</span>
+      <!-- Security Trust Badges Grid -->
+      <div class="trust-security-grid">
+        <div class="security-badge-card">
+          <div class="sec-icon-wrap sec-icon-ssl">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </div>
+          <div class="sec-badge-text">
+            <strong class="sec-badge-title">Encriptación SSL 256-bit</strong>
+            <span class="sec-badge-desc">Transacción 100% Protegida</span>
+          </div>
+        </div>
+
+        <div class="security-badge-card">
+          <div class="sec-icon-wrap sec-icon-instant">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </div>
+          <div class="sec-badge-text">
+            <strong class="sec-badge-title">Acceso Inmediato en PDF</strong>
+            <span class="sec-badge-desc">Entrega directa en tu email</span>
+          </div>
+        </div>
+
+        <div class="security-badge-card">
+          <div class="sec-icon-wrap sec-icon-guarantee">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              <polyline points="9 12 11 14 15 10"></polyline>
+            </svg>
+          </div>
+          <div class="sec-badge-text">
+            <strong class="sec-badge-title">Garantía Total de 7 Días</strong>
+            <span class="sec-badge-desc">100% Devolución sin riesgo</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
