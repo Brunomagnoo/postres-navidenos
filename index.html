@@ -296,19 +296,81 @@
     .fb-val-green { color: var(--green-cta); }
     .fb-val-pink { color: var(--primary); }
 
-    /* ─── PAYMENT CHANNELS & COUNTRIES ─── */
-    .as-seen-bar {
-      background: #FFF; border-block: 1px solid rgba(0,0,0,0.06); padding: 16px 0;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+    /* ─── PAYMENT & TRUST GUARANTEE BANNER ─── */
+    .trust-bar-section {
+      background: linear-gradient(180deg, #FFFFFF 0%, #FAF7F2 100%);
+      border-block: 1px solid rgba(180, 160, 140, 0.2);
+      padding: 32px 0 28px;
     }
-    .as-seen-wrap {
-      display: flex; align-items: center; justify-content: center; gap: 14px 24px;
-      flex-wrap: wrap; font-size: 0.85rem; font-weight: 700; color: #4A5568;
+    .trust-bar-head {
+      text-align: center; margin-bottom: 20px;
     }
-    .as-seen-title { color: var(--primary); display: flex; align-items: center; gap: 6px; }
-    .pay-item {
-      background: var(--bg-alt); padding: 5px 12px; border-radius: var(--radius-pill);
-      border: 1px solid rgba(0,0,0,0.06); font-size: 0.8rem;
+    .trust-badge-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(0, 200, 83, 0.08); border: 1px solid rgba(0, 200, 83, 0.28);
+      color: #008736; font-size: 0.74rem; font-weight: 900;
+      padding: 4px 14px; border-radius: var(--radius-pill);
+      letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 8px;
+    }
+    .trust-bar-title {
+      font-size: clamp(1.05rem, 3vw, 1.25rem);
+      font-weight: 900; color: var(--text-dark); letter-spacing: -0.2px;
+    }
+    .trust-bar-sub {
+      font-size: 0.84rem; color: var(--text-secondary); margin-top: 4px;
+    }
+    .trust-countries-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px; max-width: 1060px; margin: 0 auto 20px;
+    }
+    @media (min-width: 768px) {
+      .trust-countries-grid {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 12px;
+      }
+    }
+    .country-card {
+      background: #FFF; border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: var(--radius-md); padding: 12px 14px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+      display: flex; flex-direction: column; gap: 6px;
+      transition: transform 0.2s var(--ease), border-color 0.2s, box-shadow 0.2s;
+    }
+    .country-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(179, 18, 69, 0.3);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+    }
+    .country-card:last-child:nth-child(odd) {
+      grid-column: span 2;
+    }
+    @media (min-width: 768px) {
+      .country-card:last-child:nth-child(odd) {
+        grid-column: auto;
+      }
+    }
+    .country-head {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 0.88rem; font-weight: 800; color: var(--text-dark);
+    }
+    .country-methods {
+      font-size: 0.74rem; color: var(--text-secondary);
+      display: flex; flex-wrap: wrap; gap: 4px;
+    }
+    .method-tag {
+      background: var(--bg-alt); padding: 2px 7px; border-radius: 4px;
+      font-weight: 700; color: #374151; font-size: 0.72rem;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .trust-footer-strip {
+      display: flex; align-items: center; justify-content: center;
+      gap: 16px 28px; flex-wrap: wrap;
+      padding-top: 16px; border-top: 1px dashed rgba(180, 160, 140, 0.3);
+      font-size: 0.8rem; font-weight: 700; color: #4B5563;
+    }
+    .trust-foot-item {
+      display: inline-flex; align-items: center; gap: 6px;
     }
 
     /* ─── SECTION HEADERS ─── */
@@ -747,18 +809,90 @@
     </div>
   </section>
 
-  <!-- 4. PAYMENT METHODS & LATAM CURRENCIES BAR -->
-  <div class="as-seen-bar">
-    <div class="wrap as-seen-wrap">
-      <span class="as-seen-title">🔒 Pago 100% Seguro en tu Moneda Local:</span>
-      <span class="pay-item">🇲🇽 México (OXXO / Tarjetas)</span>
-      <span class="pay-item">🇨🇴 Colombia (PSE / Nequi)</span>
-      <span class="pay-item">🇵🇪 Perú (PagoEfectivo / Yape)</span>
-      <span class="pay-item">🇨🇱 Chile (Sencillito)</span>
-      <span class="pay-item">🅿️ PayPal</span>
-      <span class="pay-item">💳 Tarjetas de Crédito / Débito</span>
+  <!-- 4. PAYMENT METHODS & LATAM TRUST GUARANTEE -->
+  <section class="trust-bar-section">
+    <div class="wrap">
+      <div class="trust-bar-head">
+        <span class="trust-badge-pill">🛡️ Pasarela Oficial Hotmart®</span>
+        <h3 class="trust-bar-title">Pago 100% Seguro en tu Moneda Local</h3>
+        <p class="trust-bar-sub">El sistema convierte automáticamente los $9.90 USD al valor exacto en tu país</p>
+      </div>
+
+      <div class="trust-countries-grid">
+        <!-- México -->
+        <div class="country-card">
+          <div class="country-head">
+            <span>🇲🇽</span>
+            <span>México (MXN)</span>
+          </div>
+          <div class="country-methods">
+            <span class="method-tag">OXXO</span>
+            <span class="method-tag">Tarjetas</span>
+            <span class="method-tag">SPEI</span>
+          </div>
+        </div>
+
+        <!-- Colombia -->
+        <div class="country-card">
+          <div class="country-head">
+            <span>🇨🇴</span>
+            <span>Colombia (COP)</span>
+          </div>
+          <div class="country-methods">
+            <span class="method-tag">PSE</span>
+            <span class="method-tag">Nequi</span>
+            <span class="method-tag">Bancolombia</span>
+          </div>
+        </div>
+
+        <!-- Perú -->
+        <div class="country-card">
+          <div class="country-head">
+            <span>🇵🇪</span>
+            <span>Perú (PEN)</span>
+          </div>
+          <div class="country-methods">
+            <span class="method-tag">Yape</span>
+            <span class="method-tag">PagoEfectivo</span>
+            <span class="method-tag">BCP</span>
+          </div>
+        </div>
+
+        <!-- Chile -->
+        <div class="country-card">
+          <div class="country-head">
+            <span>🇨🇱</span>
+            <span>Chile (CLP)</span>
+          </div>
+          <div class="country-methods">
+            <span class="method-tag">Webpay</span>
+            <span class="method-tag">Sencillito</span>
+            <span class="method-tag">Mach</span>
+          </div>
+        </div>
+
+        <!-- Internacional -->
+        <div class="country-card">
+          <div class="country-head">
+            <span>🌎</span>
+            <span>Otros Países (USD)</span>
+          </div>
+          <div class="country-methods">
+            <span class="method-tag">Tarjetas</span>
+            <span class="method-tag">PayPal</span>
+            <span class="method-tag">Google Pay</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Security Trust Badges -->
+      <div class="trust-footer-strip">
+        <span class="trust-foot-item">🔒 Encriptación SSL 256-bit</span>
+        <span class="trust-foot-item">⚡ Acceso Inmediato en PDF</span>
+        <span class="trust-foot-item">🛡️ Garantía de Satisfacción 7 Días</span>
+      </div>
     </div>
-  </div>
+  </section>
 
   <!-- 5. ANTES VS DESPUÉS (PAS GRID) -->
   <section class="section">
